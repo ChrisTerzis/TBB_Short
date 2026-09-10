@@ -1,0 +1,28 @@
+TBB-short setup status
+Date: 2026-09-10
+
+Images:
+- Folder created: c:\projects\TBB-short\public\images
+- Copies FAILED. Source files exist under
+  C:\Users\5590\.cursor\projects\c-projects-TBB-short\assets
+  but copy/python/node processes did not run (Windows shell host error
+  0x80131506 / TargetInvocationException; stdout empty, destination
+  files never appeared).
+- hero-dancer.jpg: NOT copied (size unknown)
+- podium-bg.png: NOT copied (size unknown)
+- app-home.png: NOT copied (size unknown)
+
+npm install:
+- FAILED. "C:\Program Files\nodejs\npm.cmd" and node.exe exist, but
+  the install command exited without writing node_modules.
+
+Dev server:
+- NOT started. No local URL.
+- Expected URL after a successful `npm run dev` would be
+  http://localhost:5173/
+
+Retry locally:
+  mkdir public\images
+  copy the 3 assets into public\images with the names above
+  npm install
+  npm run dev
