@@ -100,7 +100,7 @@ function FeaturedProgram({ program, open }) {
     >
       <div className="relative flex min-w-0 items-start gap-5 sm:gap-8">
         <span className="serif mt-1 w-8 shrink-0 text-lg text-gold">{program.n}</span>
-        <div className="min-w-0 flex-1 pr-28 sm:pr-40">
+        <div className="min-w-0 flex-1 sm:pr-40">
           <div data-open={open} className="reveal">
             <div className="reveal-inner">
               <p className="pb-3 text-[11px] font-medium uppercase tracking-[0.28em] text-gold">
@@ -111,6 +111,13 @@ function FeaturedProgram({ program, open }) {
           <span className="serif block text-2xl leading-none sm:text-[1.85rem]">
             {program.title}
           </span>
+          <span
+            className={`mt-2 block text-[10px] font-medium uppercase tracking-[0.22em] text-mute-light sm:hidden ${
+              open ? "hidden" : ""
+            }`}
+          >
+            {program.tag}
+          </span>
           <div data-open={open} className="reveal">
             <div className="reveal-inner">
               <p className="max-w-xl pt-4 text-[15px] leading-relaxed text-mute-light">
@@ -120,7 +127,7 @@ function FeaturedProgram({ program, open }) {
           </div>
         </div>
         <span
-          className={`absolute right-0 top-1 text-[10px] font-medium uppercase tracking-[0.22em] text-mute-light transition-opacity duration-500 sm:top-1/2 sm:-translate-y-1/2 ${
+          className={`absolute right-0 top-1/2 hidden -translate-y-1/2 text-[10px] font-medium uppercase tracking-[0.22em] text-mute-light transition-opacity duration-500 sm:block ${
             open ? "opacity-0" : "opacity-100 delay-75"
           }`}
         >
@@ -141,10 +148,6 @@ function FeaturedProgram({ program, open }) {
               src={program.image}
               alt={program.imageAlt}
               className="h-auto w-full object-contain object-center"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-2 border border-gold sm:inset-2.5"
             />
           </div>
         </div>

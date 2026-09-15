@@ -86,7 +86,7 @@ export default function Pricing({ onStart }) {
                 <ul
                   className={`mt-8 ${
                     plan.id === "performance"
-                      ? "grid grid-cols-2 gap-x-3 gap-y-3 text-[12px] leading-snug sm:text-[13px]"
+                      ? "grid grid-cols-1 gap-x-3 gap-y-3 text-[12px] leading-snug sm:grid-cols-2 sm:text-[13px]"
                       : "space-y-3 text-[13px]"
                   }`}
                 >
@@ -96,7 +96,7 @@ export default function Pricing({ onStart }) {
                       <span
                         className={`${
                           plan.dark ? "text-cream/80" : "text-mute-light"
-                        } ${plan.id === "performance" ? "whitespace-nowrap" : ""}`}
+                        } ${plan.id === "performance" ? "sm:whitespace-nowrap" : ""}`}
                       >
                         {feature}
                       </span>
@@ -129,7 +129,7 @@ export default function Pricing({ onStart }) {
                   <button
                     type="button"
                     onClick={onStart}
-                    className={`mt-7 w-full cursor-pointer rounded-none px-6 py-3 text-[13px] font-medium transition sm:w-auto ${
+                    className={`mt-7 w-full cursor-pointer rounded-[10px] px-6 py-3 text-[13px] font-medium transition sm:w-auto ${
                       plan.dark
                         ? "bg-gold text-ink hover:bg-gold-soft"
                         : "bg-ink text-cream hover:bg-ink-soft"

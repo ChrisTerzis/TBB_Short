@@ -53,7 +53,7 @@ export default function TrialModal({ open, onClose }) {
             <button
               type="button"
               onClick={onClose}
-              className="mt-8 rounded-none bg-ink px-6 py-3 text-[13px] font-medium text-cream"
+              className="mt-8 rounded-[10px] bg-ink px-6 py-3 text-[13px] font-medium text-cream"
             >
               Back to the page
             </button>
@@ -91,7 +91,7 @@ export default function TrialModal({ open, onClose }) {
             </label>
             <button
               type="submit"
-              className="mt-6 w-full rounded-none bg-gold px-6 py-3 text-[13px] font-medium text-ink hover:bg-gold-soft"
+              className="mt-6 w-full rounded-[10px] bg-gold px-6 py-3 text-[13px] font-medium text-ink hover:bg-gold-soft"
             >
               Start your free week
             </button>

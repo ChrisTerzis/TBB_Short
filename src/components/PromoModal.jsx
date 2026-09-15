@@ -164,7 +164,7 @@ export default function PromoModal({ onStart, onExplore }) {
               dismiss();
               onStart();
             }}
-            className="mt-5 w-fit cursor-pointer rounded-none bg-gold px-5 py-2.5 text-[13px] font-medium text-ink transition hover:opacity-90"
+            className="mt-5 w-fit cursor-pointer rounded-[10px] bg-gold px-5 py-2.5 text-[13px] font-medium text-ink transition hover:opacity-90"
           >
             Start your free week
           </button>

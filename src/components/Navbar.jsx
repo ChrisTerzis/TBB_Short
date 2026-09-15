@@ -8,7 +8,7 @@ export default function Navbar({ onStart }) {
         <button
           type="button"
           onClick={onStart}
-          className="cursor-pointer rounded-none bg-gold px-5 py-2.5 text-[13px] font-medium text-ink transition hover:opacity-90"
+          className="cursor-pointer rounded-[10px] bg-gold px-5 py-2.5 text-[13px] font-medium text-ink transition hover:opacity-90"
         >
           Start your free week
         </button>

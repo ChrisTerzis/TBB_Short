@@ -8,7 +8,7 @@ export default function CtaBand({ onStart }) {
         <button
           type="button"
           onClick={onStart}
-          className="cursor-pointer rounded-none bg-cream px-6 py-3 text-[13px] font-medium text-ink transition hover:bg-white"
+          className="cursor-pointer rounded-[10px] bg-cream px-6 py-3 text-[13px] font-medium text-ink transition hover:bg-white"
         >
           Start your free week
         </button>

@@ -22,7 +22,7 @@ export default function Hero({ onStart }) {
             <button
               type="button"
               onClick={onStart}
-              className="cursor-pointer rounded-none bg-gold px-6 py-3 text-[13px] font-medium text-ink transition hover:bg-gold-soft"
+              className="cursor-pointer rounded-[10px] bg-gold px-6 py-3 text-[13px] font-medium text-ink transition hover:bg-gold-soft"
             >
               Start your free week
             </button>
