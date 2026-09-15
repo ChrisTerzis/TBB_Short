@@ -11,7 +11,7 @@ const plans = [
     annualTotal: 249,
     features: [
       "Core programs",
-      "Basic logging and process",
+      "Basic logging and progress",
       "Read-only community access",
       "Select feature updates",
     ],
@@ -55,7 +55,7 @@ export default function Pricing({ onStart }) {
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-mute-light">
             Structured strength training for ballet athletes. Seasonal
-            programming. Performance coaching.
+            programming. Performance tracking.
           </p>
         </div>
 
@@ -69,7 +69,7 @@ export default function Pricing({ onStart }) {
             return (
               <article
                 key={plan.id}
-                className={`flex flex-col rounded-[1.4rem] p-8 sm:p-10 ${
+                className={`flex flex-col rounded-lg p-8 sm:p-10 ${
                   plan.dark
                     ? "bg-ink text-cream"
                     : "bg-white text-ink shadow-[0_1px_0_rgba(0,0,0,0.04)]"
@@ -103,6 +103,12 @@ export default function Pricing({ onStart }) {
                     </li>
                   ))}
                 </ul>
+                {plan.id === "performance" && (
+                  <p className="mt-4 text-[11px] leading-relaxed text-mute">
+                    *AI-powered coaching insights, trained by Lili to optimize your
+                    ballet performance
+                  </p>
+                )}
                 <div className="mt-auto pt-10">
                   <p
                     className={`text-[11px] font-medium uppercase tracking-[0.24em] ${
@@ -123,7 +129,7 @@ export default function Pricing({ onStart }) {
                   <button
                     type="button"
                     onClick={onStart}
-                    className={`mt-7 w-full cursor-pointer rounded-full px-6 py-3 text-[13px] font-medium transition sm:w-auto ${
+                    className={`mt-7 w-full cursor-pointer rounded-none px-6 py-3 text-[13px] font-medium transition sm:w-auto ${
                       plan.dark
                         ? "bg-gold text-ink hover:bg-gold-soft"
                         : "bg-ink text-cream hover:bg-ink-soft"
@@ -150,7 +156,7 @@ function BillingToggle({ billing, onChange }) {
     <div className="relative inline-grid grid-cols-2 rounded-full bg-cream-deep p-1">
       <span
         aria-hidden="true"
-        className={`pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-4px)] rounded-full bg-gold shadow-[0_1px_8px_rgba(201,162,124,0.35)] transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        className={`pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-4px)] rounded-full bg-gold shadow-[0_1px_8px_rgba(187,137,108,0.35)] transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
           billing === "annual" ? "translate-x-full" : "translate-x-0"
         }`}
       />

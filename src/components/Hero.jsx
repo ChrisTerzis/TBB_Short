@@ -22,7 +22,7 @@ export default function Hero({ onStart }) {
             <button
               type="button"
               onClick={onStart}
-              className="cursor-pointer rounded-full bg-gold px-6 py-3 text-[13px] font-medium text-ink transition hover:bg-gold-soft"
+              className="cursor-pointer rounded-none bg-gold px-6 py-3 text-[13px] font-medium text-ink transition hover:bg-gold-soft"
             >
               Start your free week
             </button>
@@ -35,7 +35,7 @@ export default function Hero({ onStart }) {
             <img
               src={photos.heroDancer}
               alt="Ballet dancer en pointe standing behind a barbell"
-              className="aspect-[4/5] w-full rounded-none object-cover object-center sm:aspect-[5/6] lg:h-[640px] lg:aspect-auto"
+              className="h-auto w-full rounded-none object-contain object-center"
             />
             <div
               aria-hidden="true"

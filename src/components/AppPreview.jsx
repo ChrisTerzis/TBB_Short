@@ -38,7 +38,7 @@ export default function AppPreview() {
               <img
                 src={photos.appHome}
                 alt="The Barbell Ballerina training app home screen"
-                className="relative z-10 w-[210px] sm:w-[240px] lg:w-[258px]"
+                className="relative z-10 w-[155px] sm:w-[175px] lg:w-[190px]"
               />
               <div className="absolute -bottom-3 left-1/2 h-6 w-[70%] -translate-x-1/2 rounded-[100%] bg-black/50 blur-md" />
             </div>

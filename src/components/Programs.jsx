@@ -140,7 +140,7 @@ function FeaturedProgram({ program, open }) {
             <img
               src={program.image}
               alt={program.imageAlt}
-              className="aspect-[16/10] w-full object-cover object-center"
+              className="h-auto w-full object-contain object-center"
             />
             <div
               aria-hidden="true"
