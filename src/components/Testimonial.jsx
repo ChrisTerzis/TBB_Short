@@ -14,7 +14,7 @@ export default function Testimonial() {
             injury and pain. I even avoided hip replacement surgery.”
           </p>
           <footer className="mt-6 text-[11px] font-medium uppercase tracking-[0.24em] text-mute-light">
-            Avalyn P.
+            Avalyn P., TBB Athlete
           </footer>
         </blockquote>
       </div>

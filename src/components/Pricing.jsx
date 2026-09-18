@@ -6,7 +6,7 @@ const plans = [
     kicker: "Strength Athlete",
     title: "Build your foundation.",
     dark: false,
-    monthly: 29,
+    monthly: 24.99,
     annual: 20.75,
     annualTotal: 249,
     features: [
@@ -21,7 +21,7 @@ const plans = [
     kicker: "Performance Athlete",
     title: "Go further with your training.",
     dark: true,
-    monthly: 49,
+    monthly: 39.99,
     annual: 33.25,
     annualTotal: 399,
     features: [
@@ -121,10 +121,12 @@ export default function Pricing({ onStart }) {
                     {formatPrice(price)}
                     <span className="ml-1 text-lg opacity-60">/mo</span>
                   </p>
-                  {billing === "annual" && (
+                  {billing === "annual" ? (
                     <p className="mt-1 text-sm text-mute">
                       ${plan.annualTotal} billed annually
                     </p>
+                  ) : (
+                    <p className="mt-1 text-sm text-mute">Billed monthly</p>
                   )}
                   <button
                     type="button"

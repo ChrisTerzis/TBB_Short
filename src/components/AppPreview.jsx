@@ -21,7 +21,7 @@ export default function AppPreview() {
               dramatically.”
             </p>
             <footer className="mt-4 text-[11px] font-medium uppercase tracking-[0.22em] text-gold">
-              Hannah A., TBB dancer
+              Hannah A., TBB Athlete
             </footer>
           </blockquote>
         </div>

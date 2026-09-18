@@ -22,7 +22,7 @@ export default function Footer() {
           >
             Terms
           </a>
-          <a href="mailto:hello@thebarreandbulletproof.com" className="hover:text-cream">
+          <a href="mailto:support@thebarbellballerina.com" className="hover:text-cream">
             Contact
           </a>
         </nav>
