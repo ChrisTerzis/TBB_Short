@@ -26,23 +26,12 @@ export default function AppPreview() {
           </blockquote>
         </div>
 
-        <div className="relative min-h-[540px] overflow-hidden bg-ink lg:min-h-[680px]">
+        <div className="relative flex min-h-[480px] items-center justify-center bg-ink px-6 py-16 lg:min-h-[640px]">
           <img
-            src={photos.podiumBg}
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover object-[70%_80%]"
+            src={photos.workout}
+            alt="The Barbell Ballerina workout in the training app"
+            className="w-[420px] sm:w-[480px] lg:w-[540px]"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/40" />
-          <div className="absolute inset-0 flex items-end justify-center pb-[19%] sm:pb-[17%]">
-            <div className="relative">
-              <img
-                src={photos.appHome}
-                alt="The Barbell Ballerina training app home screen"
-                className="relative z-10 w-[155px] sm:w-[175px] lg:w-[190px]"
-              />
-              <div className="absolute -bottom-3 left-1/2 h-6 w-[70%] -translate-x-1/2 rounded-[100%] bg-black/50 blur-md" />
-            </div>
-          </div>
         </div>
       </div>
     </section>
