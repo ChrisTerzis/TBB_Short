@@ -22,19 +22,19 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-ink text-cream overflow-x-hidden">
-      <Navbar onStart={openTrial} />
+      <Navbar onStart={exploreMembership} />
       <main>
-        <Hero onStart={openTrial} />
+        <Hero onStart={exploreMembership} />
         <Steps />
         <AppPreview />
         <Testimonial />
         <Programs />
         <Pricing onStart={openTrial} />
-        <CtaBand onStart={openTrial} />
+        <CtaBand onStart={exploreMembership} />
       </main>
       <Footer />
       <TrialModal open={trialOpen} onClose={() => setTrialOpen(false)} />
-      <PromoModal onStart={openTrial} onExplore={exploreMembership} />
+      <PromoModal onStart={exploreMembership} onExplore={exploreMembership} />
     </div>
   );
 }

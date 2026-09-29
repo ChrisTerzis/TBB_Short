@@ -15,6 +15,10 @@ const plans = [
       "Read-only community access",
       "Select feature updates",
     ],
+    checkout: {
+      monthly: "https://buy.stripe.com/4gM14odhm13O9Y14Us24005",
+      annual: "https://buy.stripe.com/3cI14o6SY9Ak3zDbiQ24008",
+    },
   },
   {
     id: "performance",
@@ -32,6 +36,10 @@ const plans = [
       "Full workout history",
       "Ballet-specific coaching insights*",
     ],
+    checkout: {
+      monthly: "https://buy.stripe.com/fZufZifpu5k4filcmU24007",
+      annual: "https://buy.stripe.com/8x214oelqh2M0nr86E24009",
+    },
   },
 ];
 
@@ -66,6 +74,12 @@ export default function Pricing({ onStart }) {
         <div className="mt-10 grid gap-5 lg:grid-cols-2">
           {plans.map((plan) => {
             const price = billing === "annual" ? plan.annual : plan.monthly;
+            const checkoutUrl = plan.checkout?.[billing];
+            const ctaClass = `mt-7 inline-block w-full cursor-pointer rounded-[10px] px-6 py-3 text-center text-[13px] font-medium transition sm:w-auto ${
+              plan.dark
+                ? "bg-gold text-ink hover:bg-gold-soft"
+                : "bg-ink text-cream hover:bg-ink-soft"
+            }`;
             return (
               <article
                 key={plan.id}
@@ -128,17 +142,15 @@ export default function Pricing({ onStart }) {
                   ) : (
                     <p className="mt-1 text-sm text-mute">Billed monthly</p>
                   )}
-                  <button
-                    type="button"
-                    onClick={onStart}
-                    className={`mt-7 w-full cursor-pointer rounded-[10px] px-6 py-3 text-[13px] font-medium transition sm:w-auto ${
-                      plan.dark
-                        ? "bg-gold text-ink hover:bg-gold-soft"
-                        : "bg-ink text-cream hover:bg-ink-soft"
-                    }`}
-                  >
-                    Start your free week
-                  </button>
+                  {checkoutUrl ? (
+                    <a href={checkoutUrl} className={ctaClass}>
+                      Start your free week
+                    </a>
+                  ) : (
+                    <button type="button" onClick={onStart} className={ctaClass}>
+                      Start your free week
+                    </button>
+                  )}
                 </div>
               </article>
             );
