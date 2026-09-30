@@ -7,6 +7,14 @@ export default function Footer() {
         <Logo />
         <nav className="flex gap-6 text-sm text-mute">
           <a
+            href="https://thebarbellballerina.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-cream"
+          >
+            Learn more
+          </a>
+          <a
             href="https://thebarbellballerina.com/privacy-policy"
             target="_blank"
             rel="noopener noreferrer"

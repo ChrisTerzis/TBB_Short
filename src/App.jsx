@@ -29,7 +29,7 @@ export default function App() {
         <AppPreview />
         <Testimonial />
         <Programs />
-        <Pricing onStart={openTrial} />
+        <Pricing />
         <CtaBand onStart={exploreMembership} />
       </main>
       <Footer />
