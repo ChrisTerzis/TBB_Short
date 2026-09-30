@@ -45,6 +45,31 @@ function formatPrice(value) {
 
 export default function Pricing() {
   const [billing, setBilling] = useState("annual");
+  const [checkoutError, setCheckoutError] = useState("");
+  const [checkoutBusy, setCheckoutBusy] = useState(false);
+
+  async function startCheckout(planId) {
+    setCheckoutError("");
+    setCheckoutBusy(true);
+
+    try {
+      const response = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ plan: `${planId}-${billing}` }),
+      });
+      const payload = await response.json().catch(() => ({}));
+
+      if (!response.ok || !payload.url) {
+        throw new Error(payload.error || "Unable to start checkout.");
+      }
+
+      window.location.assign(payload.url);
+    } catch (error) {
+      setCheckoutError(error.message || "Unable to start checkout.");
+      setCheckoutBusy(false);
+    }
+  }
 
   return (
     <section id="pricing" className="bg-cream text-ink">
@@ -66,7 +91,7 @@ export default function Pricing() {
         <div className="mt-10 grid gap-5 lg:grid-cols-2">
           {plans.map((plan) => {
             const price = billing === "annual" ? plan.annual : plan.monthly;
-            const ctaClass = `mt-7 inline-block w-full cursor-pointer rounded-[10px] px-6 py-3 text-center text-[13px] font-medium transition sm:w-auto ${
+            const ctaClass = `mt-7 inline-block w-full cursor-pointer rounded-[10px] px-6 py-3 text-center text-[13px] font-medium transition sm:w-auto disabled:cursor-wait disabled:opacity-70 ${
               plan.dark
                 ? "bg-gold text-ink hover:bg-gold-soft"
                 : "bg-ink text-cream hover:bg-ink-soft"
@@ -133,17 +158,23 @@ export default function Pricing() {
                   ) : (
                     <p className="mt-1 text-sm text-mute">Billed monthly</p>
                   )}
-                  <form action="/api/create-checkout-session" method="POST">
-                    <input type="hidden" name="plan" value={`${plan.id}-${billing}`} />
-                    <button type="submit" className={ctaClass}>
-                      Start your free week
-                    </button>
-                  </form>
+                  <button
+                    type="button"
+                    onClick={() => startCheckout(plan.id)}
+                    disabled={checkoutBusy}
+                    className={ctaClass}
+                  >
+                    Start your free week
+                  </button>
                 </div>
               </article>
             );
           })}
         </div>
+
+        {checkoutError ? (
+          <p className="mt-6 text-sm text-red-700">{checkoutError}</p>
+        ) : null}
 
         <p className="mt-8 text-sm text-mute-light">
           Change plans or cancel anytime • 100% Lili’s method • 0% generic fitness
