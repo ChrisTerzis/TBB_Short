@@ -15,6 +15,12 @@ const plans = [
       "Read-only community access",
       "Select feature updates",
     ],
+    checkout: {
+      monthly:
+        "https://checkout.stripe.com/f/pay/cs_live_b1vM0hyaflX0uAxIClkEmwlOcrxhP49yRYP0moqNKSpRvvZ4QzxsNxBDoO#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSd2cGd2ZndsdXFsamtQa2x0cGBrYHZ2QGtkZ2lgYSc%2FY2RpdmApJ2JzJz8wKSdkdWxOYHwnPyd1blppbHNgWjA0THdyQ0hOU25XYjJENHM8SUBCSEQ8Vz1GZ0xCbHRRf0lSRn9gQ0RTSWowNUBQRmRWUV1TVTdxZG1wYGxycjZDamJ0ZEsya1IzSHVER3FVfH1DUGAzYHRGNTU3TENfVmxGdycpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyY1NTU1NTUnKSdpZHxqcHFRfHVgJz8naHBpcWxabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl",
+      annual:
+        "https://checkout.stripe.com/c/pay/cs_live_b1UQx86rscOESMZG8hdrVyNIOsW3wrMqxB11mRjnMP2VtatoUV4cifINNG#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSd2cGd2ZndsdXFsamtQa2x0cGBrYHZ2QGtkZ2lgYSc%2FY2RpdmApJ2JzJz81KSdkdWxOYHwnPyd1blppbHNgWjA0THdyQ0hOU25XYjJENHM8SUBCSEQ8Vz1GZ0xCbHRRf0lSRn9gQ0RTSWowNUBQRmRWUV1TVTdxZG1wYGxycjZDamJ0ZEsya1IzSHVER3FVfH1DUGAzYHRGNTU3TENfVmxGdycpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyY1NTU1NTUnKSdpZHxqcHFRfHVgJz8naHBpcWxabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl",
+    },
   },
   {
     id: "performance",
@@ -32,6 +38,12 @@ const plans = [
       "Full workout history",
       "Ballet-specific coaching insights*",
     ],
+    checkout: {
+      monthly:
+        "https://checkout.stripe.com/c/pay/cs_live_b1b6gWZbD4jiznus75JM0DTf5iM30U725PncPwxrbiDLT7gbW04MzQg7pN#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSd2cGd2ZndsdXFsamtQa2x0cGBrYHZ2QGtkZ2lgYSc%2FY2RpdmApJ2JzJz81KSdkdWxOYHwnPyd1blppbHNgWjA0THdyQ0hOU25XYjJENHM8SUBCSEQ8Vz1GZ0xCbHRRf0lSRn9gQ0RTSWowNUBQRmRWUV1TVTdxZG1wYGxycjZDamJ0ZEsya1IzSHVER3FVfH1DUGAzYHRGNTU3TENfVmxGdycpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyY1NTU1NTUnKSdpZHxqcHFRfHVgJz8naHBpcWxabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl",
+      annual:
+        "https://checkout.stripe.com/f/pay/cs_live_b1U6tCJBmpfFWOB82E9rxuVXumFYiVD7qza7FXBR827TMNqAdJstnKmBVX#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSd2cGd2ZndsdXFsamtQa2x0cGBrYHZ2QGtkZ2lgYSc%2FY2RpdmApJ2JzJz8wKSdkdWxOYHwnPyd1blppbHNgWjA0THdyQ0hOU25XYjJENHM8SUBCSEQ8Vz1GZ0xCbHRRf0lSRn9gQ0RTSWowNUBQRmRWUV1TVTdxZG1wYGxycjZDamJ0ZEsya1IzSHVER3FVfH1DUGAzYHRGNTU3TENfVmxGdycpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyY1NTU1NTUnKSdpZHxqcHFRfHVgJz8naHBpcWxabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl",
+    },
   },
 ];
 
@@ -45,31 +57,6 @@ function formatPrice(value) {
 
 export default function Pricing() {
   const [billing, setBilling] = useState("annual");
-  const [checkoutError, setCheckoutError] = useState("");
-  const [checkoutBusy, setCheckoutBusy] = useState(false);
-
-  async function startCheckout(planId) {
-    setCheckoutError("");
-    setCheckoutBusy(true);
-
-    try {
-      const response = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({ plan: `${planId}-${billing}` }),
-      });
-      const payload = await response.json().catch(() => ({}));
-
-      if (!response.ok || !payload.url) {
-        throw new Error(payload.error || "Unable to start checkout.");
-      }
-
-      window.location.assign(payload.url);
-    } catch (error) {
-      setCheckoutError(error.message || "Unable to start checkout.");
-      setCheckoutBusy(false);
-    }
-  }
 
   return (
     <section id="pricing" className="bg-cream text-ink">
@@ -91,7 +78,8 @@ export default function Pricing() {
         <div className="mt-10 grid gap-5 lg:grid-cols-2">
           {plans.map((plan) => {
             const price = billing === "annual" ? plan.annual : plan.monthly;
-            const ctaClass = `mt-7 inline-block w-full cursor-pointer rounded-[10px] px-6 py-3 text-center text-[13px] font-medium transition sm:w-auto disabled:cursor-wait disabled:opacity-70 ${
+            const checkoutUrl = plan.checkout[billing];
+            const ctaClass = `mt-7 inline-block w-full cursor-pointer rounded-[10px] px-6 py-3 text-center text-[13px] font-medium transition sm:w-auto ${
               plan.dark
                 ? "bg-gold text-ink hover:bg-gold-soft"
                 : "bg-ink text-cream hover:bg-ink-soft"
@@ -158,23 +146,14 @@ export default function Pricing() {
                   ) : (
                     <p className="mt-1 text-sm text-mute">Billed monthly</p>
                   )}
-                  <button
-                    type="button"
-                    onClick={() => startCheckout(plan.id)}
-                    disabled={checkoutBusy}
-                    className={ctaClass}
-                  >
+                  <a href={checkoutUrl} className={ctaClass}>
                     Start your free week
-                  </button>
+                  </a>
                 </div>
               </article>
             );
           })}
         </div>
-
-        {checkoutError ? (
-          <p className="mt-6 text-sm text-red-700">{checkoutError}</p>
-        ) : null}
 
         <p className="mt-8 text-sm text-mute-light">
           Change plans or cancel anytime • 100% Lili’s method • 0% generic fitness

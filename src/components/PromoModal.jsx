@@ -18,7 +18,7 @@ const promos = {
     kicker: "Black Friday",
     title: "Your next chapter starts stronger.",
     body: "Build strength for ballet with a clear plan and guided training.",
-    image: "/images/WorkoutStart.png",
+    image: photos.appHome,
     imageAlt: "The Barbell Ballerina training app home screen",
     layout: "phone",
   },
