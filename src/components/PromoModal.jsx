@@ -57,7 +57,7 @@ export default function PromoModal({ onStart, onExplore }) {
     } catch {
       // Show anyway if storage is blocked.
     }
-    const timer = window.setTimeout(() => setPromoId(id), 400);
+    const timer = window.setTimeout(() => setPromoId(id), 2500);
     return () => window.clearTimeout(timer);
   }, []);
 
